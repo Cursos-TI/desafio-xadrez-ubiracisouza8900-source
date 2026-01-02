@@ -1,61 +1,106 @@
+
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+/* =====================================================
+   FUNÇÕES RECURSIVAS – NÍVEL MESTRE
+   ===================================================== */
 
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
-
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
-    
-    #include <stdio.h>
-int main(){
-        int bispo = 0;
-        int rainha = 0;
-    //movimentaçao da Toree 5 para direita
-    for (int i = 0; i < 5; i++){
-        printf(" Direita\n");
+void moverBispo(int casas) {
+    if (casas > 0) {
+        moverBispo(casas - 1);
+        printf("Bispo: Diagonal Direita para cima\n");
     }
+}
+
+void moverTorre(int casas) {
+    if (casas > 0) {
+        moverTorre(casas - 1);
+        printf("Torre: Direita\n");
+    }
+}
+
+void moverRainha(int casas) {
+    if (casas > 0) {
+        moverRainha(casas - 1);
+        printf("Rainha: Esquerda\n");
+    }
+}
+
+/* =====================================================
+   FUNÇÃO PRINCIPAL
+   ===================================================== */
+
+int main() {
+
+    int bispo = 0;
+    int rainha = 0;
+    int escolha;
+
+    /* =====================================================
+       TORRE – LOOP
+       ===================================================== */
+    for (int i = 0; i < 5; i++) {
+        printf("Direita (Torre - Loop)\n");
+    }
+
+    /* =====================================================
+       BISPO – LOOPS ANINHADOS
+       ===================================================== */
     while (bispo < 2) {
-        //movimentaçao do bispo 2 para diagonal direita
-        for (int j = 0; j < 2; j++){
-            printf(" Diagonal Esquerda\n");
-            printf(" Diagonal Direita\n");
+        for (int j = 0; j < 2; j++) {
+            printf("Diagonal Esquerda (Bispo - Loop)\n");
+            printf("Diagonal Direita (Bispo - Loop)\n");
         }
         bispo++;
-
     }
-    do 
-    {
-        //movimentaçao da rainha 3 frente, esquerda e direita
-        for (int k = 0; k < 3; k++){
-            printf(" Frente\n");
-            printf("volta\n");
-            printf(" esquerda\n");
-            printf(" Direita\n");
+
+    /* =====================================================
+       RAINHA – DO WHILE
+       ===================================================== */
+    do {
+        for (int k = 0; k < 3; k++) {
+            printf("Frente (Rainha - Loop)\n");
+            printf("Volta (Rainha - Loop)\n");
+            printf("Esquerda (Rainha - Loop)\n");
+            printf("Direita (Rainha - Loop)\n");
         }
         rainha++;
     } while (rainha < 1);
 
-    return 0;
+    /* =====================================================
+       CAVALO – MOVIMENTO EM L
+       ===================================================== */
+    printf("\nMovimento do Cavalo 🐎\n");
 
+    for (int c = 1; c <= 2; c++) {
+
+        printf("\nJogada %d do cavalo\n", c);
+        printf("Escolha o lado:\n");
+        printf("1 - Direita\n");
+        printf("2 - Esquerda\n");
+        printf("Opcao: ");
+        scanf("%d", &escolha);
+
+        printf("Frente (Cavalo)\n");
+        printf("Frente (Cavalo)\n");
+
+        if (escolha == 1) {
+            printf("Direita (Cavalo)\n");
+        } else if (escolha == 2) {
+            printf("Esquerda (Cavalo)\n");
+        } else {
+            printf("Opcao invalida!\n");
+        }
+    }
+
+    /* =====================================================
+       NÍVEL MESTRE – FUNÇÕES RECURSIVAS
+       ===================================================== */
+    printf("\n--- Movimentos Recursivos ---\n");
+
+    moverBispo(5);
+    moverTorre(8);
+    moverRainha(8);
+
+    return 0;
 }
